@@ -3,10 +3,11 @@ let express = require('express');
 let formidable = require('formidable');
 let router = express.Router();
 let dataBase = new Map();
+let token = '0218b321f214c0e60e7a5a4be7c16cfaf1f7be28'
 
 /* GET users listing. */
 router.get('/compute', function(req, res, next) {
-    if (req.headers['hw-token'] !== '1234567890')
+    if (req.headers['hw-token'] !== token)
         next(403);
     else {
         let type = req.query.type;
@@ -34,7 +35,7 @@ router.get('/compute', function(req, res, next) {
 
 
 router.use('/pair', function (req, res, next) {
-    if (req.headers['hw-token'] !== '1234567890')
+    if (req.headers['hw-token'] !== token)
         next(403);
     else {
         if (req.method === "POST"){
